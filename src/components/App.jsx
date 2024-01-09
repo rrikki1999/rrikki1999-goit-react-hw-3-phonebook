@@ -57,16 +57,17 @@ export class App extends Component {
     );
   };
 
-  componentDidMount(){
+  componentDidMount() {
     const stringifiedContacts = localStorage.getItem('contacts');
-    const unstringifiedContacts = JSON.parse(stringifiedContacts) ?? [];
-    this.setState({contacts : unstringifiedContacts});
+    const unstringifiedContacts = JSON.parse(stringifiedContacts);
+    if (unstringifiedContacts) {
+      this.setState({ contacts: unstringifiedContacts });
+    }
   }
-  componentDidUpdate(prevState){
-    if (prevState.contacts !== this.state.contacts){
+  componentDidUpdate(prevState) {
+    if (prevState.contacts !== this.state.contacts) {
       const stringifiedContacts = JSON.stringify(this.state.contacts);
       localStorage.setItem('contacts', stringifiedContacts);
-      console.log("contacts have changed");
     }
   }
 
@@ -88,9 +89,7 @@ export class App extends Component {
             />
           </>
         ) : (
-          <p>
-            Your phonebook is empty. Add first contact!
-          </p>
+          <p>Your phonebook is empty. Add first contact!</p>
         )}
       </div>
     );
