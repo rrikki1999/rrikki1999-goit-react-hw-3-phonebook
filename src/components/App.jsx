@@ -70,7 +70,9 @@ export class App extends Component {
       localStorage.setItem('contacts', stringifiedContacts);
     }
   }
+    
 
+  
   render() {
     const { filter } = this.state;
     const filterContacts = this.filterContacts();
